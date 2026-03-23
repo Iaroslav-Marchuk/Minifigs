@@ -3,6 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url(../../assets/img/404.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: var(--white);
 }
 
 .title {
@@ -16,9 +21,8 @@
 }
 
 .link {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
 .wrapper {
@@ -30,5 +34,5 @@
 }
 
 .link:hover {
-  background-color: var(--secondary);
+  transform: scale(1.05);
 }

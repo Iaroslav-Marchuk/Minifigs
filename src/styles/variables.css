@@ -1,14 +1,9 @@
 :root {
-  --primary: #d9e6f2;
-  --primary-foreground: #163259;
-  --primary-hover: #26acf4;
-
-  --secondary: #cee6f2;
-  --secondary-foreground: #0d7fc4;
-  --secondary-hover: #99c4f5;
-
   --background: #e8f8ff;
   --foreground: #163259;
+
+  --yellow: yellow;
+  --white: #fafafa;
 
   --text: #6b6375;
   --text-h: #08060d;
