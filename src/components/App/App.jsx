@@ -6,6 +6,7 @@ import MainPage from '../../pages/MainPage/MainPage.jsx';
 import CatalogPage from '../../pages/CatalogPage/CatalogPage.jsx';
 import MyCollectionPage from '../../pages/MyCollectionPage/MyCollectionPage.jsx';
 import WishListPage from '../../pages/WishListPage/WishListPage.jsx';
+import FigurePage from '../../pages/FigurePage/FigurePage.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/mycollection" element={<MyCollectionPage />} />
         <Route path="/wishlist" element={<WishListPage />} />
+        <Route path="/figure" element={<FigurePage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
