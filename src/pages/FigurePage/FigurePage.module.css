@@ -50,7 +50,7 @@
 }
 
 .subtitle {
-  background: rgba(245, 197, 24, 0.2);
+  background: var(--yellow-3);
   border: 1px solid rgba(245, 197, 24, 0.8);
   display: inline-block;
   padding: 6px 14px;
@@ -84,20 +84,28 @@
 }
 
 .btn {
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 14px 28px;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  border: 1px solid;
-  width: 100%;
+  border: 1px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  background: var(--yellow-3);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 
+.btn:hover {
+  box-shadow: 2px 2px 0 var(--black);
+  transform: translate(2px, 2px);
+}
 .btn:active {
-  transform: translateY(0);
+  box-shadow: none;
+  transform: translate(4px, 4px);
 }
 
 .setsSection {
@@ -105,5 +113,5 @@
   padding-top: 40px;
 }
 
-.setsLabel {
-}
+/* .setsLabel {
+} */

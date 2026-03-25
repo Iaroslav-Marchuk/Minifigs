@@ -1,9 +1,22 @@
 import Container from '../../components/Container/Container.jsx';
 import Section from '../../components/Section/Section.jsx';
 
+import { Heart, Star } from 'lucide-react';
+
 import css from './FigurePage.module.css';
 
 function FigurePage() {
+  // const [inCollection, setInCollection] = useState(figure.inCollection);
+
+  // const handleCollection = async () => {
+  //   setInCollection(prev => !prev);
+  //   try {
+  //     await api.toggleCollection(figure.id);
+  //   } catch {
+  //     setInCollection(prev => !prev);
+  //   }
+  // };
+
   return (
     <Section>
       <Container className={css.container}>
@@ -29,8 +42,19 @@ function FigurePage() {
               </li>
             </ul>
 
-            <button className={css.btn}>Add to my collection</button>
-            <button className={css.btn}>Add to my wishlist</button>
+            <button className={css.btn}>
+              <Star
+                strokeWidth={1.5}
+                // fill={inCollection ? 'currentColor' : 'none'}
+              />
+              {/* {inCollection ? 'In my collection' : 'Add to my collection'} */}
+              Add to my collection
+            </button>
+
+            <button className={css.btn}>
+              <Heart strokeWidth={1.5} />
+              Add to my wishlist
+            </button>
           </div>
         </div>
         <div className={css.setsSection}>

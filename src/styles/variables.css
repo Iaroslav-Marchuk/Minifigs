@@ -4,15 +4,16 @@
 
   --yellow: yellow;
   --yellow-2: #ece288;
+  --yellow-3: rgba(245, 197, 24, 0.2);
   --blue: blue;
   --white: #fafafa;
   --black: #252424;
+  --gray: #cbd5e1;
 
   --text: #6b6375;
   --text-h: #08060d;
 
   --error: #f1113e;
 
-  --muted: #cbd5e1;
   --muted-foreground: #a1a1aa;
 }
