@@ -2,16 +2,13 @@ import { Heart, Star } from 'lucide-react';
 
 import css from './Card.module.css';
 
-function Card() {
+function Card({ fig }) {
   return (
     <div className={css.card}>
-      <img
-        src="https://cdn.rebrickable.com/media/sets/fig-000027/64041.jpg"
-        alt="figure"
-      />
+      <img src={fig.img_url} alt={fig.name} />
       <div className={css.wrapper}>
-        <h3 className={css.cardTitle}>UFO Alien, Red</h3>
-        <span className={css.span}>fig-000027</span>
+        <h3 className={css.cardTitle}>{fig.name}</h3>
+        <span className={css.span}>{fig.fig_num}</span>
         <div className={css.iconWrapper}>
           <Star strokeWidth={1.5} />
           <Heart strokeWidth={1.5} />

@@ -6,6 +6,7 @@
   cursor: pointer;
   position: relative;
   transition: transform 0.2s ease;
+  height: 100%;
 }
 
 .card:hover {
@@ -14,6 +15,7 @@
 
 .card img {
   width: 100%;
+  height: 200px;
   object-fit: contain;
   border-bottom: 2px solid var(--gray);
 }
