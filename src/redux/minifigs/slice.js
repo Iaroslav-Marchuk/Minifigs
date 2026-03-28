@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllMinifigs } from './operations.js';
+import { getAllMinifigs, getMinifigById } from './operations.js';
 
 const handlePending = key => state => {
   state[key].isLoading = true;
@@ -16,12 +16,17 @@ const minifigsSlice = createSlice({
   initialState: {
     all: {
       minifigs: [],
-      //   pagination: {
-      //     totalItems: 0,
-      //     totalPages: 0,
-      //     hasNextPage: false,
-      //     hasPreviousPage: false,
-      //   },
+      pagination: {
+        totalItems: 0,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPreviousPage: false,
+      },
+      isLoading: false,
+      error: null,
+    },
+    currentMinifig: {
+      minifig: null,
       isLoading: false,
       error: null,
     },
@@ -31,18 +36,24 @@ const minifigsSlice = createSlice({
     builder
       .addCase(getAllMinifigs.pending, handlePending('all'))
       .addCase(getAllMinifigs.fulfilled, (state, action) => {
-        // const { orders, ...pagination } = action.payload;
-        const { minifigs } = action.payload;
-        state.all.minifigs = minifigs;
-        // state.all.pagination = {
-        //   totalItems: pagination.totalItems,
-        //   totalPages: pagination.totalPages,
-        //   hasNextPage: pagination.hasNextPage,
-        //   hasPreviousPage: pagination.hasPreviousPage,
-        // };
+        const { allMinifigs, ...pagination } = action.payload;
+        state.all.minifigs = allMinifigs;
+        state.all.pagination = {
+          totalItems: pagination.totalItems,
+          totalPages: pagination.totalPages,
+          hasNextPage: pagination.hasNextPage,
+          hasPreviousPage: pagination.hasPreviousPage,
+        };
         state.all.isLoading = false;
       })
-      .addCase(getAllMinifigs.rejected, handleRejected('all'));
+      .addCase(getAllMinifigs.rejected, handleRejected('all'))
+
+      .addCase(getMinifigById.pending, handlePending('currentMinifig'))
+      .addCase(getMinifigById.fulfilled, (state, action) => {
+        state.currentMinifig.minifig = action.payload;
+        state.currentMinifig.isLoading = false;
+      })
+      .addCase(getMinifigById.rejected, handleRejected('currentMinifig'));
   },
 });
 

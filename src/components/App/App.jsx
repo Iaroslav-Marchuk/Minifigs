@@ -13,10 +13,10 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
-        <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/minifigs" element={<CatalogPage />} />
+        <Route path="/minifigs/:id" element={<FigurePage />} />
         <Route path="/mycollection" element={<MyCollectionPage />} />
         <Route path="/wishlist" element={<WishListPage />} />
-        <Route path="/figure" element={<FigurePage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

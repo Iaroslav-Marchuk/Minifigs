@@ -4,8 +4,21 @@ import Section from '../../components/Section/Section.jsx';
 import { Heart, Star } from 'lucide-react';
 
 import css from './FigurePage.module.css';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentMinifig } from '../../redux/minifigs/selectors.js';
+import { useEffect } from 'react';
+import { getMinifigById } from '../../redux/minifigs/operations.js';
 
 function FigurePage() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const currentMinifig = useSelector(selectCurrentMinifig);
+
+  useEffect(() => {
+    dispatch(getMinifigById(id));
+  }, [dispatch, id]);
+
   // const [inCollection, setInCollection] = useState(figure.inCollection);
 
   // const handleCollection = async () => {
@@ -17,25 +30,26 @@ function FigurePage() {
   //   }
   // };
 
+  if (!currentMinifig) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <Section>
       <Container className={css.container}>
-        <h2 className={css.title}>UFO Alien, Red</h2>
+        <h2 className={css.title}>{currentMinifig.name}</h2>
         <div className={css.wrapper}>
           <div className={css.leftSide}>
-            <img
-              src="https://cdn.rebrickable.com/media/sets/fig-000027/64041.jpg"
-              alt="figure"
-            />
+            <img src={currentMinifig.img_url} alt={currentMinifig.name} />
           </div>
           <div className={css.rigthSide}>
-            <h3 className={css.subtitle}>fig-000027</h3>
+            <h3 className={css.subtitle}>{currentMinifig.fig_num}</h3>
             <ul className={css.list}>
               <li className={css.item}>
-                <span>Name: UFO Alien, Red</span>
+                <span>{currentMinifig.name}</span>
               </li>
               <li className={css.item}>
-                <span>Inventory: 5 partes</span>
+                <span>Inventory: {currentMinifig.num_parts} parts</span>
               </li>
               <li className={css.item}>
                 <span>Found in: 2 sets</span>

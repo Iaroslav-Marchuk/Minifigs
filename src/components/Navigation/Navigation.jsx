@@ -18,7 +18,7 @@ function Navigation() {
         My colletcion
       </NavLink>
       <NavLink
-        to="/catalog"
+        to="/minifigs"
         className={({ isActive }) => clsx(css.link, isActive && css.active)}
       >
         Catalog
@@ -38,4 +38,3 @@ function Navigation() {
 }
 
 export default Navigation;
-
