@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllMinifigs, getMinifigById } from './operations.js';
+import {
+  getAllMinifigs,
+  getMinifigById,
+  getSetsByFigNum,
+} from './operations.js';
 
 const handlePending = key => state => {
   state[key].isLoading = true;
@@ -30,6 +34,11 @@ const minifigsSlice = createSlice({
       isLoading: false,
       error: null,
     },
+    sets: {
+      foundSets: null,
+      isLoading: false,
+      error: null,
+    },
   },
   reducers: {},
   extraReducers: builder => {
@@ -53,7 +62,14 @@ const minifigsSlice = createSlice({
         state.currentMinifig.minifig = action.payload;
         state.currentMinifig.isLoading = false;
       })
-      .addCase(getMinifigById.rejected, handleRejected('currentMinifig'));
+      .addCase(getMinifigById.rejected, handleRejected('currentMinifig'))
+
+      .addCase(getSetsByFigNum.pending, handlePending('sets'))
+      .addCase(getSetsByFigNum.fulfilled, (state, action) => {
+        state.sets.foundSets = action.payload;
+        state.sets.isLoading = false;
+      })
+      .addCase(getSetsByFigNum.rejected, handleRejected('sets'));
   },
 });
 

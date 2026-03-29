@@ -6,17 +6,25 @@ import { Heart, Star } from 'lucide-react';
 import css from './FigurePage.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentMinifig } from '../../redux/minifigs/selectors.js';
+import {
+  selectCurrentMinifig,
+  selectSets,
+} from '../../redux/minifigs/selectors.js';
 import { useEffect } from 'react';
-import { getMinifigById } from '../../redux/minifigs/operations.js';
+import {
+  getMinifigById,
+  getSetsByFigNum,
+} from '../../redux/minifigs/operations.js';
 
 function FigurePage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentMinifig = useSelector(selectCurrentMinifig);
+  const sets = useSelector(selectSets);
 
   useEffect(() => {
     dispatch(getMinifigById(id));
+    dispatch(getSetsByFigNum(id));
   }, [dispatch, id]);
 
   // const [inCollection, setInCollection] = useState(figure.inCollection);
@@ -52,7 +60,7 @@ function FigurePage() {
                 <span>Inventory: {currentMinifig.num_parts} parts</span>
               </li>
               <li className={css.item}>
-                <span>Found in: 2 sets</span>
+                <span>Found in: {sets ? sets.length : 0} set(s)</span>
               </li>
             </ul>
 
@@ -75,6 +83,14 @@ function FigurePage() {
           <span className={css.setsLabel}>
             This figure appears in the following Sets:
           </span>
+          <ul>
+            {sets &&
+              sets.map(set => (
+                <li key={set._id}>
+                  {set.name} ({set.year})
+                </li>
+              ))}
+          </ul>
         </div>
       </Container>
     </Section>
