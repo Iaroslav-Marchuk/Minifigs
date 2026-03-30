@@ -113,5 +113,33 @@
   padding-top: 40px;
 }
 
-/* .setsLabel {
-} */
+.setsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.setsLabel {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.setsSection {
+  margin-top: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .setsList {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .setsList {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

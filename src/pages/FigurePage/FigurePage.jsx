@@ -15,6 +15,7 @@ import {
   getMinifigById,
   getSetsByFigNum,
 } from '../../redux/minifigs/operations.js';
+import Set from '../../components/Set/Set.jsx';
 
 function FigurePage() {
   const { id } = useParams();
@@ -83,11 +84,12 @@ function FigurePage() {
           <span className={css.setsLabel}>
             This figure appears in the following Sets:
           </span>
-          <ul>
+          <ul className={css.setsList}>
+            {!sets && <p className={css.aviso}>Sets not found!</p>}
             {sets &&
               sets.map(set => (
                 <li key={set._id}>
-                  {set.name} ({set.year})
+                  <Set set={set} />
                 </li>
               ))}
           </ul>
