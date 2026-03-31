@@ -7,6 +7,7 @@ import { selectAllMinifigs } from '../../redux/minifigs/selectors.js';
 import css from './CatalogPage.module.css';
 import { useEffect } from 'react';
 import { getAllMinifigs } from '../../redux/minifigs/operations.js';
+import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 
 function CatalogPage() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function CatalogPage() {
   return (
     <Section>
       <Container>
-        <p>CatalogPage</p>
+        <SearchBox />
 
         <ul className={css.grid}>
           {minifigs.map(fig => (

@@ -1,0 +1,15 @@
+.footer {
+  background-image: url(../../assets/img/footer-bg.jpg);
+  height: 200px;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  background-size: auto 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

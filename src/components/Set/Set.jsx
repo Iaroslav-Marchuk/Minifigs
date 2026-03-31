@@ -13,7 +13,7 @@ function Set({ set }) {
       <div className={css.wrapper}>
         <h3 className={css.setName}>{set.name}</h3>
         <ul className={css.list}>
-          <li className={css.item}>Name: {set.set_num}</li>
+          <li className={css.item}>Art.: {set.set_num}</li>
           <li className={css.item}>Realized: {set.year} year</li>
           <li className={css.item}>Inventory: {set.num_parts} parts</li>
         </ul>
