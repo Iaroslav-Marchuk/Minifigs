@@ -16,8 +16,7 @@ export const getAllMinifigs = createAsyncThunk(
   ) => {
     try {
       const response = await axiosAPI.get('/minifigs', {
-        params: { page, perPage, themeId, search, sortOrder, sortBy },
-        // params: { page, perPage },
+        params: { page, perPage, theme: themeId, search, sortOrder, sortBy },
       });
       return response.data.data;
     } catch (error) {

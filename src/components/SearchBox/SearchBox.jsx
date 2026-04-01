@@ -94,6 +94,7 @@ function SearchBox() {
           <Search className={css.inputIcon} />
         </button>
       </div>
+
       <div className={css.selectWrapper}>
         <select
           value={themeValue}
@@ -104,11 +105,13 @@ function SearchBox() {
             Select theme
           </option>
           <option value="All themes">All themes</option>
-          {themes.map(theme => (
-            <option key={theme.id} value={theme.name}>
-              {theme.name}
-            </option>
-          ))}
+          {[...themes]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(theme => (
+              <option key={theme.id} value={theme.id}>
+                {theme.name}
+              </option>
+            ))}
         </select>
       </div>
     </div>

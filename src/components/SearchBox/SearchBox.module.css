@@ -9,10 +9,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 0.5px solid var(--color-border-secondary, #ccc);
+  border: 0.5px solid var(--gray);
   border-radius: 8px;
-  background: #fff;
-  padding: 0 10px;
+  padding-left: 10px;
   height: 38px;
 }
 
@@ -26,7 +25,11 @@
 }
 
 .input::placeholder {
-  color: #aaa;
+  color: var(--muted);
+}
+
+.inputIcon {
+  stroke: var(--white);
 }
 
 .clear,
@@ -36,13 +39,25 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  color: #888;
+  color: var(--gray);
   padding: 0;
+}
+
+.search {
+  background: var(--blue);
+  width: 38px;
+  height: 38px;
+  justify-content: center;
+  border-radius: 0 8px 8px 0;
 }
 
 .clear:hover,
 .search:hover {
-  color: #333;
+  color: var(--muted);
+}
+
+.search .inputIcon:hover {
+  scale: 1.1;
 }
 
 .selectWrapper {
@@ -51,9 +66,9 @@
 
 .select {
   height: 38px;
-  border: 0.5px solid #ccc;
+  border: 0.5px solid var(--gray);
   border-radius: 8px;
-  background: #fff;
+
   font-size: 14px;
   padding: 0 10px;
   outline: none;
@@ -62,5 +77,5 @@
 }
 
 .select:focus {
-  border-color: #888;
+  border-color: var(--muted);
 }
