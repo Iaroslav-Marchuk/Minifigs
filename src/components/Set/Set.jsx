@@ -1,7 +1,21 @@
-import { Link } from 'react-router-dom';
+import Skeleton from '@mui/material/Skeleton';
 import css from './Set.module.css';
 
-function Set({ set }) {
+function Set({ set, isLoading }) {
+  if (isLoading) {
+    return (
+      <div className={css.set}>
+        <Skeleton variant="rectangular" width={120} height={120} />
+        <div className={css.wrapper}>
+          <Skeleton variant="text" width="60%" />
+          <Skeleton variant="text" />
+          <Skeleton variant="text" />
+          <Skeleton variant="text" width="40%" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <a
       href={`https://rebrickable.com/sets/${set.set_num}`}

@@ -2,6 +2,9 @@ export const selectAllMinifigs = state => state.minifigs.all.minifigs;
 export const selectAllMinifigsIsLoading = state => state.minifigs.all.isLoading;
 export const selectAllMinifigsError = state => state.minifigs.all.error;
 
+export const selectTotalPages = state =>
+  state.minifigs.all.pagination.totalPages;
+
 export const selectCurrentMinifig = state =>
   state.minifigs.currentMinifig.minifig;
 export const selectCurrentMinifigIsLoading = state =>
