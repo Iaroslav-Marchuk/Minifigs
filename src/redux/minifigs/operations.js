@@ -6,7 +6,7 @@ export const getAllMinifigs = createAsyncThunk(
   async (
     {
       page = 1,
-      perPage = 20,
+      perPage = 40,
       themeId,
       search,
       sortOrder = 'asc',

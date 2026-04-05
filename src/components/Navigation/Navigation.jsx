@@ -29,8 +29,8 @@ function Navigation() {
       >
         <Heart />
       </NavLink>
-      <p>SEARCH</p>
-      <NavLink>
+      <p>Sign In</p>
+      <NavLink className={css.avatar}>
         <img src={head} alt="head-icon" className={css.icon} />
       </NavLink>
     </nav>

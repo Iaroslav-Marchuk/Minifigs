@@ -20,7 +20,8 @@ function CatalogPage() {
   const minifigs = useSelector(selectAllMinifigs);
   const isMinifigsLoading = useSelector(selectAllMinifigsIsLoading);
   const totalPages = useSelector(selectTotalPages);
-  const hasMoreThan2Pages = totalPages > 1;
+  const hasMoreThan1Page = totalPages > 1;
+  const showBottomPagination = hasMoreThan1Page && minifigs.length >= 6;
 
   const [query, setQuery] = useSearchParams();
   const page = Number(query.get('page')) || 1;
@@ -66,7 +67,7 @@ function CatalogPage() {
     <Section>
       <Container>
         <SearchBox />
-        {hasMoreThan2Pages && (
+        {hasMoreThan1Page && (
           <Pagination
             page={page}
             totalPages={totalPages}
@@ -74,7 +75,7 @@ function CatalogPage() {
           />
         )}
 
-        {minifigs ? (
+        {minifigs.length > 0 ? (
           <ul className={css.grid}>
             {minifigs.map(fig => (
               <li key={fig._id}>
@@ -84,6 +85,14 @@ function CatalogPage() {
           </ul>
         ) : (
           <p className={css.noResults}>No results!</p>
+        )}
+
+        {showBottomPagination && (
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         )}
       </Container>
     </Section>

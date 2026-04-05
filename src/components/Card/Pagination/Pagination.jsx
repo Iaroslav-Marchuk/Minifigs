@@ -1,7 +1,12 @@
-import { CircleChevronLeft, CircleChevronRight } from 'lucide-react';
+import {
+  ChevronFirst,
+  ChevronLeft,
+  ChevronRight,
+  ChevronLast,
+} from 'lucide-react';
+import clsx from 'clsx';
 
 import css from './Pagination.module.css';
-import clsx from 'clsx';
 
 function Pagination({ page, totalPages, onPageChange }) {
   const getPages = (page, totalPages) => {
@@ -32,54 +37,82 @@ function Pagination({ page, totalPages, onPageChange }) {
   return (
     <>
       <div className={css.paginationContainer}>
+        <div className={css.navGroup}>
+          <button
+            disabled={page === 1}
+            onClick={() => onPageChange(1)}
+            className={css.arrowBtn}
+          >
+            <ChevronFirst
+              size={16}
+              strokeWidth={1.5}
+              className={css.arrowIcon}
+            />
+          </button>
+          <button
+            disabled={page === 1}
+            onClick={() => onPageChange(page - 1)}
+            className={css.arrowBtn}
+          >
+            <ChevronLeft
+              size={16}
+              strokeWidth={1.5}
+              className={css.arrowIcon}
+            />
+          </button>
+        </div>
+
+        <div className={css.pageGroup}>
+          {pages.map((p, i) =>
+            p === '...' ? (
+              <span key={`dots-${i}`} className={css.dots}>
+                …
+              </span>
+            ) : (
+              <button
+                key={`page-${p}`}
+                onClick={() => onPageChange(p)}
+                className={clsx(css.pageBtn, p === page && css.isActive)}
+              >
+                {p}
+              </button>
+            )
+          )}
+        </div>
+
+        <div className={css.navGroup}>
+          <button
+            disabled={page === totalPages}
+            onClick={() => onPageChange(page + 1)}
+            className={css.arrowBtn}
+          >
+            <ChevronRight
+              size={16}
+              strokeWidth={1.5}
+              className={css.arrowIcon}
+            />
+          </button>
+          <button
+            disabled={page === totalPages}
+            onClick={() => onPageChange(totalPages)}
+            className={css.arrowBtn}
+          >
+            <ChevronLast
+              size={16}
+              strokeWidth={1.5}
+              className={css.arrowIcon}
+            />
+          </button>
+        </div>
+      </div>
+
+      <div className={css.mobilePagination}>
         <button
           disabled={page === 1}
           onClick={() => onPageChange(page - 1)}
           className={css.arrow}
         >
-          <CircleChevronLeft
-            size={36}
-            strokeWidth={1}
-            className={css.arrowIcon}
-          />
-        </button>
-
-        {pages.map((p, i) =>
-          p === '...' ? (
-            <span key={`dots-${i}`} className={css.dots}>
-              …
-            </span>
-          ) : (
-            <button
-              key={`page-${p}`}
-              onClick={() => onPageChange(p)}
-              className={clsx(css.pageBtn, p === page && css.isActive)}
-            >
-              {p}
-            </button>
-          )
-        )}
-
-        <button
-          disabled={page === totalPages}
-          onClick={() => onPageChange(page + 1)}
-          className={css.arrow}
-        >
-          <CircleChevronRight
-            size={36}
-            strokeWidth={1}
-            className={css.arrowIcon}
-          />
-        </button>
-      </div>
-
-      <div className={css.mobilePagination}>
-        <button disabled={page === 1} onClick={() => onPageChange(page - 1)}>
-          <CircleChevronLeft
-            size={36}
-            strokeWidth={1}
-            className={css.arrowIcon}
-          />
+          <ChevronLeft size={16} strokeWidth={1.5} className={css.arrowIcon} />
         </button>
 
         <span>
@@ -89,12 +122,9 @@ function Pagination({ page, totalPages, onPageChange }) {
         <button
           disabled={page === totalPages}
           onClick={() => onPageChange(page + 1)}
+          className={css.arrow}
         >
-          <CircleChevronRight
-            size={36}
-            strokeWidth={1}
-            className={css.arrowIcon}
-          />
+          <ChevronRight size={16} strokeWidth={1.5} className={css.arrowIcon} />
         </button>
       </div>
     </>
