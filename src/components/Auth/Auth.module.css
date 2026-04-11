@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.topSection {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-image: url(../../assets/img/auth-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+}
+
+.span {
+  background-color: var(--white);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bottomSection {
+  padding: 40px;
+  display: flex;
+  gap: 20px;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.text {
+  margin-bottom: 40px;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: var(--blue);
+  color: var(--white);
+  text-align: center;
+}
+
+.image {
+  width: 560px;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}

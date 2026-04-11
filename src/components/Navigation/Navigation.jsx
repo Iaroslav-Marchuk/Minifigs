@@ -8,7 +8,13 @@ import head from '../../assets/icons/icons-head-24.png';
 
 import css from './Navigation.module.css';
 
+import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
+import Auth from '../Auth/Auth.jsx';
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
 function Navigation() {
+  const { isModalOpen, openModal, closeModal } = useModal();
+
   return (
     <nav className={css.navigation}>
       <NavLink
@@ -29,10 +35,18 @@ function Navigation() {
       >
         <Heart />
       </NavLink>
-      <p>Sign In</p>
+
+      <button type="button" className={css.btn} onClick={openModal}>
+        Sign In
+      </button>
+
       <NavLink className={css.avatar}>
         <img src={head} alt="head-icon" className={css.icon} />
       </NavLink>
+
+      <ModalOverlay isOpen={isModalOpen} onClose={closeModal}>
+        <Auth />
+      </ModalOverlay>
     </nav>
   );
 }
