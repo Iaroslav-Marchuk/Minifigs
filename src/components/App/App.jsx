@@ -49,17 +49,6 @@ function App() {
           <Route path="/minifigs/:id" element={<FigurePage />} />
 
           <Route
-            path="register"
-            element={
-              <RestrictedRoute redirectTo="/" element={<RegisterPage />} />
-            }
-          />
-          <Route
-            path="login"
-            element={<RestrictedRoute redirectTo="/" element={<LoginPage />} />}
-          />
-
-          <Route
             path="/mycollection"
             element={<PrivateRoute element={<MyCollectionPage />} />}
           />
@@ -68,6 +57,17 @@ function App() {
             element={<PrivateRoute element={<WishListPage />} />}
           />
         </Route>
+
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/" element={<RegisterPage />} />
+          }
+        />
+        <Route
+          path="/login"
+          element={<RestrictedRoute redirectTo="/" element={<LoginPage />} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

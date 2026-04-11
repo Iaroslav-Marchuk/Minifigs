@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { store } from '../redux/store.js';
+
 import { clearUser, setAccessToken } from '../redux/auth/slice.js';
 
 const BASE_URL = 'http://localhost:3000';
@@ -10,7 +10,10 @@ const axiosAPI = axios.create({
   withCredentials: true,
 });
 
-axiosAPI.interceptors.request.use(config => {
+const getStore = () => import('../redux/store.js').then(m => m.store);
+
+axiosAPI.interceptors.request.use(async config => {
+  const store = await getStore();
   const token = store.getState().auth.accessToken;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -25,6 +28,7 @@ axiosAPI.interceptors.response.use(
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (originalRequest.url === '/auth/refresh') {
+        const store = await getStore();
         store.dispatch(clearUser());
         return Promise.reject(error);
       }
@@ -33,12 +37,13 @@ axiosAPI.interceptors.response.use(
       try {
         const response = await axiosAPI.post('/auth/refresh');
         const newAccessToken = response.data.data.accessToken;
-
+        const store = await getStore();
         store.dispatch(setAccessToken(newAccessToken));
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
         return axiosAPI(originalRequest); // повторюємо оригінальний запит
       } catch {
+        const store = await getStore();
         store.dispatch(clearUser());
         return Promise.reject(error);
       }
