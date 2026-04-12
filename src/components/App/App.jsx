@@ -9,6 +9,7 @@ import { selectIsRefreshing } from '../../redux/auth/selectors.js';
 import { refreshSession } from '../../redux/auth/operations.js';
 import RestrictedRoute from '../RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute.jsx';
+import { Toaster } from 'react-hot-toast';
 
 const CatalogPage = lazy(
   () => import('../../pages/CatalogPage/CatalogPage.jsx')
@@ -29,6 +30,12 @@ const RegisterPage = lazy(
 const WishListPage = lazy(
   () => import('../../pages/WishListPage/WishListPage.jsx')
 );
+const RequestResetTokenPage = lazy(
+  () => import('../../pages/RequestResetTokenPage/RequestResetTokenPage.jsx')
+);
+const ResetPasswordPage = lazy(
+  () => import('../../pages/ResetPasswordPage/ResetPasswordPage.jsx')
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +49,7 @@ function App() {
     <GlobalLoader />
   ) : (
     <Suspense fallback={<GlobalLoader />}>
+      <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
@@ -68,6 +76,13 @@ function App() {
           path="/login"
           element={<RestrictedRoute redirectTo="/" element={<LoginPage />} />}
         />
+
+        <Route
+          path="/request-reset-email"
+          element={<RequestResetTokenPage />}
+        />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

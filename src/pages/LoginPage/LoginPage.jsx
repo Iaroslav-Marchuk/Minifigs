@@ -33,8 +33,9 @@ function LoginPage() {
 
           <h3>Sign in to your account</h3>
           <LoginForm />
-          <NavLink to="/register" className={css.link}>
-            Forgot your password?
+
+          <NavLink to="/request-reset-email" className={css.link}>
+            Forgot password?
           </NavLink>
 
           <span>or</span>

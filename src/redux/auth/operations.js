@@ -48,3 +48,27 @@ export const refreshSession = createAsyncThunk(
     }
   }
 );
+
+export const requestResetToken = createAsyncThunk(
+  'auth/requestResetToken',
+  async (values, thunkAPI) => {
+    try {
+      await axiosAPI.post('/auth/request-reset-email', values);
+      return;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const resetUserPassword = createAsyncThunk(
+  'auth/resetUserPassword',
+  async (values, thunkAPI) => {
+    try {
+      await axiosAPI.post('/auth/reset-password', values);
+      return;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);

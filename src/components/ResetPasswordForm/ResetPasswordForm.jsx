@@ -1,37 +1,35 @@
 import { useDispatch, useSelector } from 'react-redux';
-import css from './RegisterForm.module.css';
+import css from './ResetPasswordForm.module.css';
 import { selectIsUserLoading } from '../../redux/auth/selectors.js';
 
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 
-import { UserRound, KeyRound, Mail } from 'lucide-react';
+import { KeyRound } from 'lucide-react';
 import { PulseLoader } from 'react-spinners';
-import { registerUser } from '../../redux/auth/operations.js';
-import { useNavigate } from 'react-router-dom';
+import { resetUserPassword } from '../../redux/auth/operations.js';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-function RegisterForm() {
+function ResetPasswordForm() {
   const dispatch = useDispatch();
   const isUserLoading = useSelector(selectIsUserLoading);
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
   const navigate = useNavigate();
 
   const initialValues = {
-    name: '',
-    email: '',
     password: '',
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Field required!'),
-    email: Yup.string().email().required('Field required!'),
     password: Yup.string().required('Field required!'),
   });
 
   const handleSubmit = async (values, actions) => {
     try {
-      await dispatch(registerUser(values)).unwrap();
-      toast.success('Registered successfully!');
+      await dispatch(resetUserPassword({ ...values, token })).unwrap();
+      toast.success('Password reset successfully!');
       actions.resetForm();
       navigate('/login');
     } catch (error) {
@@ -46,46 +44,8 @@ function RegisterForm() {
     >
       <Form className={css.form}>
         <div className={css.formGroup}>
-          <label htmlFor="name" className={css.label}>
-            Name
-          </label>
-          <div className={css.inputContainer}>
-            <Field
-              type="text"
-              name="name"
-              id="name"
-              placeholder=" "
-              autoComplete="name"
-              className={css.input}
-              disabled={isUserLoading}
-            />
-            <UserRound className={css.inputIcon} size={24} strokeWidth={1.5} />
-          </div>
-          <ErrorMessage name="name" component="span" className={css.error} />
-        </div>
-
-        <div className={css.formGroup}>
-          <label htmlFor="email" className={css.label}>
-            E-mail
-          </label>
-          <div className={css.inputContainer}>
-            <Field
-              type="email"
-              name="email"
-              id="email"
-              placeholder=" "
-              autoComplete="email"
-              className={css.input}
-              disabled={isUserLoading}
-            />
-            <Mail className={css.inputIcon} size={24} strokeWidth={1.5} />
-          </div>
-          <ErrorMessage name="email" component="span" className={css.error} />
-        </div>
-
-        <div className={css.formGroup}>
           <label htmlFor="password" className={css.label}>
-            Password
+            New password
           </label>
           <div className={css.inputContainer}>
             <Field
@@ -117,7 +77,7 @@ function RegisterForm() {
               className={css.spiner}
             />
           ) : (
-            'Register'
+            'Reset password'
           )}
         </button>
       </Form>
@@ -125,4 +85,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default ResetPasswordForm;

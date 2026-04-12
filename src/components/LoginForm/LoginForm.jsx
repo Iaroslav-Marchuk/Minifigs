@@ -8,10 +8,14 @@ import toast from 'react-hot-toast';
 import { loginUser } from '../../redux/auth/operations.js';
 import { UserRound, KeyRound } from 'lucide-react';
 import { PulseLoader } from 'react-spinners';
+import { useNavigate } from 'react-router-dom';
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
 
 function LoginForm() {
   const dispatch = useDispatch();
   const isUserLoading = useSelector(selectIsUserLoading);
+  const navigate = useNavigate();
+  const { closeModal } = useModal();
 
   const initialValues = {
     email: '',
@@ -28,8 +32,10 @@ function LoginForm() {
       await dispatch(loginUser(values)).unwrap();
       toast.success('Logged in successfully!');
       actions.resetForm();
+      closeModal();
+      navigate('/');
     } catch (error) {
-      toast.error('Error!. ' + error);
+      toast.error('Error! ' + error);
     }
   };
   return (

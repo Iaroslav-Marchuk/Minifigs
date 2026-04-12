@@ -11,9 +11,14 @@ import css from './Navigation.module.css';
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
 import Auth from '../Auth/Auth.jsx';
 import { useModal } from '../../context/ModalContext/UseModal.jsx';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors.js';
 
 function Navigation() {
   const { isModalOpen, openModal, closeModal } = useModal();
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
 
   return (
     <nav className={css.navigation}>
@@ -36,9 +41,13 @@ function Navigation() {
         <Heart />
       </NavLink>
 
-      <button type="button" className={css.btn} onClick={openModal}>
-        Sign In
-      </button>
+      {isLoggedIn ? (
+        <span className={css.userName}>Welcome, {user.name}</span>
+      ) : (
+        <button type="button" className={css.btn} onClick={openModal}>
+          Sign In
+        </button>
+      )}
 
       <NavLink className={css.avatar}>
         <img src={head} alt="head-icon" className={css.icon} />
