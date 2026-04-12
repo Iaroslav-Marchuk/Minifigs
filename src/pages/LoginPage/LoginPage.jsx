@@ -30,14 +30,19 @@ function LoginPage() {
           </button>
 
           <img src={logo} alt="logo" className={css.logo} />
-          {/* <h3>Create your LEGO Minifigs Collection account</h3> */}
+
           <h3>Sign in to your account</h3>
           <LoginForm />
+          <NavLink to="/register" className={css.link}>
+            Forgot your password?
+          </NavLink>
+
           <span>or</span>
           <button type="button" className={css.btn}>
             <img src={googleIcon} alt="googleIcon" />
             Continue with Google
           </button>
+
           <p className={css.text}>Don't have a account?</p>
           <NavLink to="/register" className={css.link}>
             Register
