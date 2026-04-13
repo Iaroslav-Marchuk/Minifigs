@@ -35,7 +35,7 @@ const collectionSlice = createSlice({
       .addCase(getUserCollection.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.collection = action.payload.collection;
+        state.collection = action.payload.savedMinifigs;
       })
       .addCase(getUserCollection.rejected, handleRejected)
 

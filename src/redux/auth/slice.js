@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  changePassword,
   loginUser,
   logoutUser,
   refreshSession,
@@ -78,7 +79,16 @@ const authSlice = createSlice({
       .addCase(refreshSession.rejected, state => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
-      });
+      })
+
+      .addCase(changePassword.pending, handlePending)
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.isUserLoading = false;
+        state.accessToken = action.payload.data.accessToken;
+        state.user = action.payload.data.user;
+        state.authError = null;
+      })
+      .addCase(changePassword.rejected, handleRejected);
   },
 });
 

@@ -72,3 +72,15 @@ export const resetUserPassword = createAsyncThunk(
     }
   }
 );
+
+export const changePassword = createAsyncThunk(
+  'auth/changePassword',
+  async (values, thunkAPI) => {
+    try {
+      const response = await axiosAPI.patch('/auth/change-password', values);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
