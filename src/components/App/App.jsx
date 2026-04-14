@@ -10,6 +10,7 @@ import { refreshSession } from '../../redux/auth/operations.js';
 import RestrictedRoute from '../RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute.jsx';
 import { Toaster } from 'react-hot-toast';
+import SettingsPage from '../../pages/SettingsPage/SettingsPage.jsx';
 
 const CatalogPage = lazy(
   () => import('../../pages/CatalogPage/CatalogPage.jsx')
@@ -63,6 +64,11 @@ function App() {
           <Route
             path="/wishlist"
             element={<PrivateRoute element={<WishListPage />} />}
+          />
+
+          <Route
+            path="/settings"
+            element={<PrivateRoute element={<SettingsPage />} />}
           />
         </Route>
 

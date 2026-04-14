@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import clsx from 'clsx';
 
-import { Heart } from 'lucide-react';
+import { Heart, LogOut, Wrench } from 'lucide-react';
 
 import head from '../../assets/icons/icons-head-24.png';
 
@@ -14,7 +14,7 @@ import { useModal } from '../../context/ModalContext/UseModal.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors.js';
 import { useEffect, useRef, useState } from 'react';
-import { logoutUser, resetUserPassword } from '../../redux/auth/operations.js';
+import { logoutUser } from '../../redux/auth/operations.js';
 import toast from 'react-hot-toast';
 
 function Navigation() {
@@ -49,11 +49,6 @@ function Navigation() {
     setIsDropdownOpen(false);
     toast.success('Logged out!');
     navigate('/');
-  };
-
-  const handleChangePassword = () => {
-    setIsDropdownOpen(false);
-    navigate('/change-password'); // або openModal() якщо буде модалка
   };
 
   return (
@@ -100,14 +95,17 @@ function Navigation() {
           <div className={css.dropdown}>
             {isLoggedIn && (
               <>
-                <button
+                <NavLink
+                  to="/settings"
+                  onClick={() => setIsDropdownOpen(false)}
                   className={css.dropdownBtn}
-                  onClick={handleChangePassword}
                 >
-                  Change password
-                </button>
+                  <Wrench size={20} />
+                  Settings
+                </NavLink>
                 <button className={css.dropdownBtn} onClick={handleLogout}>
-                  Log out
+                  <LogOut size={20} />
+                  Exit
                 </button>
               </>
             )}
