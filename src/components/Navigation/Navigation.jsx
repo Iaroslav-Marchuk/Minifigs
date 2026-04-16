@@ -76,7 +76,7 @@ function Navigation() {
       </NavLink>
 
       {isLoggedIn ? (
-        <span className={css.userName}>Welcome, {user.name}</span>
+        <span className={css.userName}>Welcome, {user?.name}</span>
       ) : (
         <button type="button" className={css.btn} onClick={openModal}>
           Sign In

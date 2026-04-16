@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addItemToUserCollection,
+  clearUserCollection,
   deleteItemFromUserCollection,
   getUserCollection,
 } from './operations.js';
@@ -40,9 +41,10 @@ const collectionSlice = createSlice({
       .addCase(getUserCollection.rejected, handleRejected)
 
       .addCase(addItemToUserCollection.pending, handlePending)
-      .addCase(addItemToUserCollection.fulfilled, state => {
+      .addCase(addItemToUserCollection.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.collection.push(action.payload);
       })
       .addCase(addItemToUserCollection.rejected, handleRejected)
 
@@ -54,7 +56,15 @@ const collectionSlice = createSlice({
           minifig => minifig._id !== action.payload
         );
       })
-      .addCase(deleteItemFromUserCollection.rejected, handleRejected);
+      .addCase(deleteItemFromUserCollection.rejected, handleRejected)
+
+      .addCase(clearUserCollection.pending, handlePending)
+      .addCase(clearUserCollection.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+        state.collection = [];
+      })
+      .addCase(clearUserCollection.rejected, handleRejected);
   },
 });
 

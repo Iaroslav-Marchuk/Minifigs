@@ -29,8 +29,8 @@ export const addItemToUserWishList = createAsyncThunk(
   'user/addItemToUserWishList',
   async (minifigId, thunkAPI) => {
     try {
-      await axiosAPI.post(`/user/mywishlist/${minifigId}`);
-      return minifigId;
+      const response = await axiosAPI.post(`/user/mywishlist/${minifigId}`);
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -43,6 +43,18 @@ export const deleteItemFromUserWishList = createAsyncThunk(
     try {
       await axiosAPI.delete(`/user/mywishlist/${minifigId}`);
       return minifigId;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const clearUserWishList = createAsyncThunk(
+  'user/clearWishList',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosAPI.delete('/user/mywishlist/clear');
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }

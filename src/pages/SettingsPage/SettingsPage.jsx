@@ -1,16 +1,20 @@
 import css from './SettingsPage.module.css';
 import Container from '../../components/Container/Container.jsx';
 import Section from '../../components/Section/Section.jsx';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/auth/selectors.js';
-import { Check } from 'lucide-react';
+
 import { useState } from 'react';
 import ModalOverlay from '../../components/ModalOverlay/ModalOverlay.jsx';
 import ConfirmContainer from '../../components/ConfirmContainer/ConfirmContainer.jsx';
 import toast from 'react-hot-toast';
 
+import ChangePassForm from '../../components/ChangePassForm/ChangePassForm.jsx';
+import ChangeNameForm from '../../components/ChangeNameForm/ChangeNameForm.jsx';
+import { useDispatch } from 'react-redux';
+import { clearUserCollection } from '../../redux/collection/operations.js';
+import { clearUserWishList } from '../../redux/wishList/operations.js';
+
 function SettingsPage() {
-  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const [isConfirmCollectionOpen, setIsConfirmCollectionOpen] = useState(false);
   const [isConfirmWishlistOpen, setIsConfirmWishlistOpen] = useState(false);
@@ -21,25 +25,9 @@ function SettingsPage() {
   const openConfirmWishlistOpen = () => setIsConfirmWishlistOpen(true);
   const closeConfirmWishlistOpen = () => setIsConfirmWishlistOpen(false);
 
-  const handleChangePassword = async () => {
-    try {
-      toast.success('Password chanched');
-    } catch (error) {
-      toast.error('Error! ' + error);
-    }
-  };
-
-  const handleChangeName = async () => {
-    try {
-      toast.success('Name chanched');
-    } catch (error) {
-      toast.error('Error! ' + error);
-    }
-  };
-
   const handleClearCollection = async () => {
     try {
-      //   await dispatch(logOut()).unwrap();
+      await dispatch(clearUserCollection()).unwrap();
 
       toast.success('Collection was cleared!');
       closeConfirmCollection();
@@ -50,7 +38,7 @@ function SettingsPage() {
 
   const handleClearWashList = async () => {
     try {
-      //   await dispatch(logOut()).unwrap();
+      await dispatch(clearUserWishList()).unwrap();
       toast.success('Wishlist was cleared!');
       closeConfirmWishlistOpen();
     } catch (error) {
@@ -62,37 +50,31 @@ function SettingsPage() {
     <Section>
       <Container>
         <h2 className={css.title}>Settings</h2>
-        <div className={css.profile}>
+
+        <div className={css.wrapper}>
           <h3 className={css.subtitle}>Profile</h3>
-          <p className={css.text}>Your current name is {user.name}</p>
-          <div className={css.profileWrapper}>
-            <span>New name</span>
-            <input type="text" className={css.input} />
-            <button className={css.btn}>
-              <Check size={24} />
-            </button>
-          </div>
+          <ChangeNameForm />
         </div>
-        <div className={css.security}>
+
+        <div className={css.wrapper}>
           <h3 className={css.subtitle}>Security</h3>
-          <div className={css.securityWrapper}>
-            <span>Old password</span>
-            <input type="text" className={css.input} />
-            <span>New password</span>
-            <input type="text" className={css.input} />
-            <span>Confirm new password</span>
-            <input type="text" className={css.input} />
-            <button className={css.btn}>
-              <Check size={24} />
-            </button>
-          </div>
+          <ChangePassForm />
         </div>
+
         <div className={css.data}>
           <h3 className={css.subtitle}>My Data</h3>
-          <button type="button" onClick={openConfirmCollection}>
+          <button
+            type="button"
+            onClick={openConfirmCollection}
+            className={css.btn}
+          >
             Clear my collection
           </button>
-          <button type="button" onClick={openConfirmWishlistOpen}>
+          <button
+            type="button"
+            onClick={openConfirmWishlistOpen}
+            className={css.btn}
+          >
             Clear my wish list
           </button>
         </div>

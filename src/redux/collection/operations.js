@@ -29,8 +29,8 @@ export const addItemToUserCollection = createAsyncThunk(
   'user/addItemToUserCollection',
   async (minifigId, thunkAPI) => {
     try {
-      await axiosAPI.post(`/user/mycollection/${minifigId}`);
-      return minifigId;
+      const response = await axiosAPI.post(`/user/mycollection/${minifigId}`);
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -43,6 +43,18 @@ export const deleteItemFromUserCollection = createAsyncThunk(
     try {
       await axiosAPI.delete(`/user/mycollection/${minifigId}`);
       return minifigId;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const clearUserCollection = createAsyncThunk(
+  'user/clearCollection',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosAPI.delete('/user/mycollection/clear');
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }

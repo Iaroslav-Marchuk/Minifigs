@@ -5,7 +5,7 @@
   color: var(--text-h);
 }
 
-.profile {
+.wrapper {
   margin-bottom: 32px;
   background-color: var(--white);
   border: 1px solid var(--gray);
@@ -14,13 +14,13 @@
   max-width: 480px;
 }
 
-.security {
-  margin-bottom: 32px;
-  background-color: var(--white);
-  border: 1px solid var(--gray);
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 480px;
+.subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray);
+  color: var(--foreground);
 }
 
 .data {
@@ -35,87 +35,7 @@
   max-width: 480px;
 }
 
-.subtitle {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--gray);
-  color: var(--foreground);
-}
-
-.text {
-  font-size: 14px;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-
-.profileWrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.profileWrapper span {
-  font-size: 13px;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-.securityWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.securityWrapper span {
-  font-size: 13px;
-  color: var(--text);
-  margin-top: 4px;
-}
-
-.input {
-  flex: 1;
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--gray);
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: var(--background);
-  color: var(--foreground);
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.input:focus {
-  border-color: var(--blue);
-}
-
-.profileWrapper .input {
-  flex: 1;
-  width: auto;
-}
-
 .btn {
-  padding: 6px 12px;
-  background-color: var(--yellow);
-  border: none;
-  border-radius: 8px;
-
-  color: var(--black);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-  flex-shrink: 0;
-}
-
-.btn:hover {
-  background-color: var(--yellow-2);
-}
-
-.data button {
   width: 100%;
   padding: 10px 14px;
   background-color: transparent;
@@ -130,7 +50,7 @@
     border-color 0.2s;
 }
 
-.data button:hover {
+.btn:hover {
   background-color: var(--yellow-3);
   border-color: var(--yellow);
 }

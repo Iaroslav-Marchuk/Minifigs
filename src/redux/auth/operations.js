@@ -42,7 +42,7 @@ export const refreshSession = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axiosAPI.post('/auth/refresh');
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -78,6 +78,20 @@ export const changePassword = createAsyncThunk(
   async (values, thunkAPI) => {
     try {
       const response = await axiosAPI.patch('/auth/change-password', values);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const changeName = createAsyncThunk(
+  'auth/changeName',
+  async (values, thunkAPI) => {
+    try {
+      const response = await axiosAPI.patch('/auth/change-name', {
+        newName: values.newName,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);

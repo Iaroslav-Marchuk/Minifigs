@@ -23,6 +23,19 @@ import css from './FigurePage.module.css';
 
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import { selectCollection } from '../../redux/collection/selectors.js';
+import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
+import {
+  addItemToUserCollection,
+  deleteItemFromUserCollection,
+} from '../../redux/collection/operations.js';
+import toast from 'react-hot-toast';
+import { selectWishList } from '../../redux/wishList/selectors.js';
+import {
+  addItemToUserWishList,
+  deleteItemFromUserWishList,
+} from '../../redux/wishList/operations.js';
 
 function FigurePage() {
   const { id } = useParams();
@@ -32,6 +45,9 @@ function FigurePage() {
   const isSetsLoading = useSelector(selectSetsIsLoading);
   const sets = useSelector(selectSets);
 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { openModal } = useModal();
+
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
@@ -39,16 +55,39 @@ function FigurePage() {
     dispatch(getSetsByFigNum(id));
   }, [dispatch, id]);
 
-  // const [inCollection, setInCollection] = useState(figure.inCollection);
+  const collection = useSelector(selectCollection);
+  const inCollection = collection.some(item => item._id === id);
 
-  // const handleCollection = async () => {
-  //   setInCollection(prev => !prev);
-  //   try {
-  //     await api.toggleCollection(figure.id);
-  //   } catch {
-  //     setInCollection(prev => !prev);
-  //   }
-  // };
+  const wishList = useSelector(selectWishList);
+  const inWishList = wishList.some(item => item._id === id);
+
+  const handleCollection = () => {
+    if (!isLoggedIn) {
+      openModal();
+      return;
+    }
+    if (inCollection) {
+      dispatch(deleteItemFromUserCollection(id));
+      toast.error('Removed from collection!');
+    } else {
+      dispatch(addItemToUserCollection(id));
+      toast.success('Added to collection!');
+    }
+  };
+
+  const handleWishList = () => {
+    if (!isLoggedIn) {
+      openModal();
+      return;
+    }
+    if (inWishList) {
+      dispatch(deleteItemFromUserWishList(id));
+      toast.error('Removed from wish list!');
+    } else {
+      dispatch(addItemToUserWishList(id));
+      toast.success('Added to wish list!');
+    }
+  };
 
   if (isCurrentFigIsLoading || !currentMinifig) {
     return (
@@ -101,18 +140,20 @@ function FigurePage() {
               </li>
             </ul>
 
-            <button className={css.btn}>
+            <button className={css.btn} onClick={handleCollection}>
               <Star
                 strokeWidth={1.5}
-                // fill={inCollection ? 'currentColor' : 'none'}
+                fill={inCollection ? 'currentColor' : 'none'}
               />
-              {/* {inCollection ? 'In my collection' : 'Add to my collection'} */}
-              Add to my collection
+              {inCollection ? 'In my collection' : 'Add to my collection'}
             </button>
 
-            <button className={css.btn}>
-              <Heart strokeWidth={1.5} />
-              Add to my wishlist
+            <button className={css.btn} onClick={handleWishList}>
+              <Heart
+                strokeWidth={1.5}
+                fill={inWishList ? 'currentColor' : 'none'}
+              />
+              {inWishList ? 'In my wish list' : 'Add to my wish list'}
             </button>
           </div>
         </div>

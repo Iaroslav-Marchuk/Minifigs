@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addItemToUserWishList,
+  clearUserWishList,
   deleteItemFromUserWishList,
   getUserWishList,
 } from './operations.js';
@@ -40,9 +41,10 @@ const wishListSlice = createSlice({
       .addCase(getUserWishList.rejected, handleRejected)
 
       .addCase(addItemToUserWishList.pending, handlePending)
-      .addCase(addItemToUserWishList.fulfilled, state => {
+      .addCase(addItemToUserWishList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.wishList.push(action.payload);
       })
       .addCase(addItemToUserWishList.rejected, handleRejected)
 
@@ -54,7 +56,15 @@ const wishListSlice = createSlice({
           minifig => minifig._id !== action.payload
         );
       })
-      .addCase(deleteItemFromUserWishList.rejected, handleRejected);
+      .addCase(deleteItemFromUserWishList.rejected, handleRejected)
+
+      .addCase(clearUserWishList.pending, handlePending)
+      .addCase(clearUserWishList.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+        state.wishList = [];
+      })
+      .addCase(clearUserWishList.rejected, handleRejected);
   },
 });
 

@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import { getAllMinifigs } from '../../redux/minifigs/operations.js';
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 import { useSearchParams } from 'react-router-dom';
-import Pagination from '../../components/Card/Pagination/pagination.jsx';
+import Pagination from '../../components/Pagination/pagination.jsx';
 
 function CatalogPage() {
   const dispatch = useDispatch();
