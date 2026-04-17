@@ -6,6 +6,8 @@ import {
   getUserCollection,
 } from './operations.js';
 
+import { logoutUser } from '../auth/operations.js';
+
 const handlePending = state => {
   state.isLoading = true;
   state.error = null;
@@ -34,9 +36,16 @@ const collectionSlice = createSlice({
     builder
       .addCase(getUserCollection.pending, handlePending)
       .addCase(getUserCollection.fulfilled, (state, action) => {
+        const { savedMinifigs, ...pagination } = action.payload;
+        state.collection = savedMinifigs;
+        state.pagination = {
+          totalItems: pagination.totalItems,
+          totalPages: pagination.totalPages,
+          hasNextPage: pagination.hasNextPage,
+          hasPreviousPage: pagination.hasPreviousPage,
+        };
         state.isLoading = false;
         state.error = null;
-        state.collection = action.payload.savedMinifigs;
       })
       .addCase(getUserCollection.rejected, handleRejected)
 
@@ -64,7 +73,18 @@ const collectionSlice = createSlice({
         state.error = null;
         state.collection = [];
       })
-      .addCase(clearUserCollection.rejected, handleRejected);
+      .addCase(clearUserCollection.rejected, handleRejected)
+
+      .addCase(logoutUser.fulfilled, state => {
+        state.collection = [];
+        state.pagination = {
+          totalItems: 0,
+          totalPages: 0,
+          hasNextPage: false,
+          hasPreviousPage: false,
+        };
+        state.error = null;
+      });
   },
 });
 

@@ -5,6 +5,11 @@
   padding: 16px;
 }
 
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
 .noResults {
   text-align: center;
   margin-top: 40px;

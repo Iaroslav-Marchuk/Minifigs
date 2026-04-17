@@ -11,6 +11,8 @@ import RestrictedRoute from '../RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute.jsx';
 import { Toaster } from 'react-hot-toast';
 import SettingsPage from '../../pages/SettingsPage/SettingsPage.jsx';
+import { getUserCollection } from '../../redux/collection/operations.js';
+import { getUserWishList } from '../../redux/wishList/operations.js';
 
 const CatalogPage = lazy(
   () => import('../../pages/CatalogPage/CatalogPage.jsx')
@@ -42,8 +44,17 @@ function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
+  // useEffect(() => {
+  //   dispatch(refreshSession());
+  // }, [dispatch]);
+
   useEffect(() => {
-    dispatch(refreshSession());
+    dispatch(refreshSession()).then(result => {
+      if (result.meta.requestStatus === 'fulfilled') {
+        dispatch(getUserCollection({ page: 1 }));
+        dispatch(getUserWishList({ page: 1 }));
+      }
+    });
   }, [dispatch]);
 
   return isRefreshing ? (

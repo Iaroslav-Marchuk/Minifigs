@@ -14,6 +14,11 @@ import { getAllMinifigs } from '../../redux/minifigs/operations.js';
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from '../../components/Pagination/pagination.jsx';
+import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
+import { selectCollection } from '../../redux/collection/selectors.js';
+import { selectWishList } from '../../redux/wishList/selectors.js';
+import { getUserCollection } from '../../redux/collection/operations.js';
+import { getUserWishList } from '../../redux/wishList/operations.js';
 
 function CatalogPage() {
   const dispatch = useDispatch();
@@ -22,6 +27,10 @@ function CatalogPage() {
   const totalPages = useSelector(selectTotalPages);
   const hasMoreThan1Page = totalPages > 1;
   const showBottomPagination = hasMoreThan1Page && minifigs.length >= 6;
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const collection = useSelector(selectCollection);
+  const wishList = useSelector(selectWishList);
 
   const [query, setQuery] = useSearchParams();
   const page = Number(query.get('page')) || 1;
@@ -45,6 +54,15 @@ function CatalogPage() {
 
     dispatch(getAllMinifigs(params));
   }, [dispatch, query]);
+
+  useEffect(() => {
+    if (isLoggedIn && collection.length === 0) {
+      dispatch(getUserCollection({ page: 1, perPage: 1000 }));
+    }
+    if (isLoggedIn && wishList.length === 0) {
+      dispatch(getUserWishList({ page: 1, perPage: 1000 }));
+    }
+  }, [isLoggedIn]);
 
   if (isMinifigsLoading) {
     return (

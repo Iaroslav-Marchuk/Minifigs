@@ -46,6 +46,7 @@ function MyCollectionPage() {
     return (
       <Section>
         <Container>
+          <h2 className={css.title}>My Collection</h2>
           <SearchBox />
           <ul className={css.grid}>
             {Array.from({ length: 5 }).map((_, i) => (
@@ -62,6 +63,7 @@ function MyCollectionPage() {
   return (
     <Section>
       <Container>
+        <h2 className={css.title}>My Collection</h2>
         <SearchBox />
         {hasMoreThan1Page && (
           <Pagination

@@ -6,6 +6,8 @@ import {
   getUserWishList,
 } from './operations.js';
 
+import { logoutUser } from '../auth/operations.js';
+
 const handlePending = state => {
   state.isLoading = true;
   state.error = null;
@@ -34,9 +36,16 @@ const wishListSlice = createSlice({
     builder
       .addCase(getUserWishList.pending, handlePending)
       .addCase(getUserWishList.fulfilled, (state, action) => {
+        const { wishList, ...pagination } = action.payload;
+        state.wishList = wishList;
+        state.pagination = {
+          totalItems: pagination.totalItems,
+          totalPages: pagination.totalPages,
+          hasNextPage: pagination.hasNextPage,
+          hasPreviousPage: pagination.hasPreviousPage,
+        };
         state.isLoading = false;
         state.error = null;
-        state.wishList = action.payload.wishList;
       })
       .addCase(getUserWishList.rejected, handleRejected)
 
@@ -64,7 +73,18 @@ const wishListSlice = createSlice({
         state.error = null;
         state.wishList = [];
       })
-      .addCase(clearUserWishList.rejected, handleRejected);
+      .addCase(clearUserWishList.rejected, handleRejected)
+
+      .addCase(logoutUser.fulfilled, state => {
+        state.wishList = [];
+        state.pagination = {
+          totalItems: 0,
+          totalPages: 0,
+          hasNextPage: false,
+          hasPreviousPage: false,
+        };
+        state.error = null;
+      });
   },
 });
 
