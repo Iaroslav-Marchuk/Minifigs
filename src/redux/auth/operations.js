@@ -98,3 +98,27 @@ export const changeName = createAsyncThunk(
     }
   }
 );
+
+export const getGoogleOAuthUrl = createAsyncThunk(
+  'auth/get-oauth-url',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosAPI.get('/auth/get-oauth-url');
+      return response.data.data.url;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const loginWithGoogle = createAsyncThunk(
+  'auth/auth/confirm-oauth',
+  async (values, thunkAPI) => {
+    try {
+      const response = await axiosAPI.post('/auth/confirm-oauth', values);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);

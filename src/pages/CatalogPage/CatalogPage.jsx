@@ -62,7 +62,7 @@ function CatalogPage() {
     if (isLoggedIn && wishList.length === 0) {
       dispatch(getUserWishList({ page: 1, perPage: 1000 }));
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, collection.length, wishList.length, dispatch]);
 
   if (isMinifigsLoading) {
     return (

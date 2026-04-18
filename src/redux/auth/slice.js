@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   changeName,
   changePassword,
+  getGoogleOAuthUrl,
   loginUser,
+  loginWithGoogle,
   logoutUser,
   refreshSession,
   registerUser,
@@ -98,7 +100,22 @@ const authSlice = createSlice({
         state.user = action.payload.data.user;
         state.authError = null;
       })
-      .addCase(changeName.rejected, handleRejected);
+      .addCase(changeName.rejected, handleRejected)
+
+      .addCase(getGoogleOAuthUrl.pending, handlePending)
+      .addCase(getGoogleOAuthUrl.fulfilled, state => {
+        state.isUserLoading = false;
+      })
+      .addCase(getGoogleOAuthUrl.rejected, handleRejected)
+
+      .addCase(loginWithGoogle.pending, handlePending)
+      .addCase(loginWithGoogle.fulfilled, (state, action) => {
+        state.isUserLoading = false;
+        state.isLoggedIn = true;
+        state.accessToken = action.payload.accessToken;
+        state.user = action.payload.user;
+      })
+      .addCase(loginWithGoogle.rejected, handleRejected);
   },
 });
 

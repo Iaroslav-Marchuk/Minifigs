@@ -9,10 +9,19 @@ import { MoveLeft } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/ModalContext/UseModal.jsx';
 import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
+import { useDispatch } from 'react-redux';
+import { getGoogleOAuthUrl } from '../../redux/auth/operations.js';
 
 function RegisterPage() {
   const navigate = useNavigate();
   const { openModal } = useModal();
+
+  const dispatch = useDispatch();
+
+  const handleGoogleLogin = async () => {
+    const url = await dispatch(getGoogleOAuthUrl()).unwrap();
+    window.location.href = url;
+  };
 
   return (
     <Section className={css.section}>
@@ -34,7 +43,7 @@ function RegisterPage() {
           <h3>Create your account</h3>
           <RegisterForm />
           <span>or</span>
-          <button type="button" className={css.btn}>
+          <button type="button" className={css.btn} onClick={handleGoogleLogin}>
             <img src={googleIcon} alt="googleIcon" />
             Create account with Google
           </button>

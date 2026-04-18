@@ -6,7 +6,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { loginUser } from '../../redux/auth/operations.js';
-import { UserRound, KeyRound } from 'lucide-react';
+import { Mail, KeyRound } from 'lucide-react';
 import { PulseLoader } from 'react-spinners';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/ModalContext/UseModal.jsx';
@@ -59,7 +59,7 @@ function LoginForm() {
               className={css.input}
               disabled={isUserLoading}
             />
-            <UserRound className={css.inputIcon} size={24} strokeWidth={1.5} />
+            <Mail className={css.inputIcon} size={24} strokeWidth={1.5} />
           </div>
           <ErrorMessage name="email" component="span" className={css.error} />
         </div>

@@ -13,6 +13,8 @@ import { Toaster } from 'react-hot-toast';
 import SettingsPage from '../../pages/SettingsPage/SettingsPage.jsx';
 import { getUserCollection } from '../../redux/collection/operations.js';
 import { getUserWishList } from '../../redux/wishList/operations.js';
+import TermsOfServicePage from '../../pages/TermsOfServicePage/TermsOfServicePage.jsx';
+import PrivacyPolicyPage from '../../pages/PrivacyPolicyPage/PrivacyPolicyPage.jsx';
 
 const CatalogPage = lazy(
   () => import('../../pages/CatalogPage/CatalogPage.jsx')
@@ -38,6 +40,11 @@ const RequestResetTokenPage = lazy(
 );
 const ResetPasswordPage = lazy(
   () => import('../../pages/ResetPasswordPage/ResetPasswordPage.jsx')
+);
+
+const GoogleOAuthCallbackPage = lazy(
+  () =>
+    import('../../pages/GoogleOAuthCallbackPage/GoogleOAuthCallbackPage.jsx')
 );
 
 function App() {
@@ -67,6 +74,8 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/minifigs" element={<CatalogPage />} />
           <Route path="/minifigs/:id" element={<FigurePage />} />
+          <Route path="/terms" element={<TermsOfServicePage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
 
           <Route
             path="/mycollection"
@@ -99,6 +108,11 @@ function App() {
           element={<RequestResetTokenPage />}
         />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+        <Route
+          path="/confirm-google-auth"
+          element={<GoogleOAuthCallbackPage />}
+        />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

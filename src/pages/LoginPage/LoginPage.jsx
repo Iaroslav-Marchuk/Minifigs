@@ -8,10 +8,19 @@ import googleIcon from '../../assets/icons/icons8-google-24.png';
 import { MoveLeft } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/ModalContext/UseModal.jsx';
+import { useDispatch } from 'react-redux';
+import { getGoogleOAuthUrl } from '../../redux/auth/operations.js';
 
 function LoginPage() {
   const navigate = useNavigate();
   const { openModal } = useModal();
+
+  const dispatch = useDispatch();
+
+  const handleGoogleLogin = async () => {
+    const url = await dispatch(getGoogleOAuthUrl()).unwrap();
+    window.location.href = url;
+  };
 
   return (
     <Section className={css.section}>
@@ -39,7 +48,7 @@ function LoginPage() {
           </NavLink>
 
           <span>or</span>
-          <button type="button" className={css.btn}>
+          <button type="button" className={css.btn} onClick={handleGoogleLogin}>
             <img src={googleIcon} alt="googleIcon" />
             Continue with Google
           </button>

@@ -10,10 +10,20 @@ function Footer() {
   return (
     <footer className={css.footer}>
       <Container className={css.container}>
-        <NavLink to="/">
-          <img src={logo} alt="logo" className={css.logo} />
-        </NavLink>
-        <IconsSet />
+        <div className={css.wrapper}>
+          <NavLink to="/">
+            <img src={logo} alt="logo" className={css.logo} />
+          </NavLink>
+          <IconsSet />
+        </div>
+        <div className={css.links}>
+          <NavLink to="/terms" className={css.link}>
+            Terms of Service
+          </NavLink>
+          <NavLink to="/privacy" className={css.link}>
+            Privacy Policy
+          </NavLink>
+        </div>
       </Container>
     </footer>
   );
