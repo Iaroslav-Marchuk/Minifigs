@@ -21,7 +21,7 @@ import {
   deleteItemFromUserWishList,
 } from '../../redux/wishList/operations.js';
 
-function Card({ fig, isLoading }) {
+function Card({ fig, isLoading, isPreview = false }) {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -41,6 +41,7 @@ function Card({ fig, isLoading }) {
   const handleCollection = event => {
     event.stopPropagation();
     event.preventDefault();
+    if (isPreview) return;
     if (!isLoggedIn) {
       openModal();
       return;

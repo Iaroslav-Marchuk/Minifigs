@@ -42,6 +42,12 @@ function SearchBox() {
     });
   };
 
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const handleInputClear = () => {
     setInputValue('');
     setQuery(prev => {
@@ -78,6 +84,7 @@ function SearchBox() {
           placeholder="Search by name or fig number"
           value={inputValue}
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
         />
 
         {inputValue && (
