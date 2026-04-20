@@ -1,7 +1,9 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   gap: 8px;
   align-items: center;
+  width: 100%; /* додай */
 }
 
 .searchbox {
@@ -13,6 +15,9 @@
   border-radius: 8px;
   padding-left: 10px;
   height: 38px;
+
+  width: 100%; /* додай */
+  box-sizing: border-box;
 }
 
 .input {
@@ -62,6 +67,8 @@
 
 .selectWrapper {
   flex-shrink: 0;
+  width: 100%; /* додай */
+  box-sizing: border-box;
 }
 
 .select {
@@ -74,8 +81,38 @@
   outline: none;
   cursor: pointer;
   color: inherit;
+
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .select:focus {
   border-color: var(--muted);
+}
+
+.mobile {
+  display: block;
+}
+.desktop {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    flex-direction: row;
+  }
+
+  .selectWrapper {
+    width: auto;
+  }
+
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
 }

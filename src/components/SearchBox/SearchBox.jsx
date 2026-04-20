@@ -75,6 +75,9 @@ function SearchBox() {
 
   const themes = useSelector(selectAllThemes);
 
+  const truncate = (str, max = 80) =>
+    str.length > max ? str.slice(0, max) + '…' : str;
+
   return (
     <div className={css.wrapper}>
       <div className={css.searchbox}>
@@ -104,21 +107,35 @@ function SearchBox() {
 
       <div className={css.selectWrapper}>
         <select
+          className={`${css.select} ${css.mobile}`}
           value={themeValue}
           onChange={handleThemeChange}
-          className={css.select}
         >
           <option value="" disabled>
             Select theme
           </option>
           <option value="All themes">All themes</option>
-          {[...themes]
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .map(theme => (
-              <option key={theme.id} value={theme.id}>
-                {theme.name}
-              </option>
-            ))}
+          {themes.map(theme => (
+            <option key={theme.id} value={theme.id}>
+              {truncate(theme.name, 30)}
+            </option>
+          ))}
+        </select>
+
+        <select
+          className={`${css.select} ${css.desktop}`}
+          value={themeValue}
+          onChange={handleThemeChange}
+        >
+          <option value="" disabled>
+            Select theme
+          </option>
+          <option value="All themes">All themes</option>
+          {themes.map(theme => (
+            <option key={theme.id} value={theme.id}>
+              {theme.name}
+            </option>
+          ))}
         </select>
       </div>
     </div>

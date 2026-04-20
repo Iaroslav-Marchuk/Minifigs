@@ -8,3 +8,15 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.burgerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .burgerBtn {
+    display: none;
+  }
+}
