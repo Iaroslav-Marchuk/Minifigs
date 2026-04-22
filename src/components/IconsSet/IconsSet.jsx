@@ -1,9 +1,9 @@
-import css from './IconsSet.module.css';
-
 import facebookIcon from '../../assets/icons/icons8-facebook-logo-40.png';
 import xIcon from '../../assets/icons/icons8-x-40.png';
 import instagramIcon from '../../assets/icons/icons8-instagram-40.png';
 import youtubeIcon from '../../assets/icons/icons8-youtube-40.png';
+
+import css from './IconsSet.module.css';
 
 function IconsSet() {
   return (

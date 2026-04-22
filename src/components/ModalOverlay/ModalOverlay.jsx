@@ -13,7 +13,7 @@ function ModalOverlay({ children, isOpen, onClose }) {
       bodyOpenClassName={css.bodyOpen}
     >
       <button type="button" onClick={onClose} className={css.btn}>
-        <X size={26} strokeWidth={1} />
+        <X size={24} strokeWidth={1} />
       </button>
       {children}
     </Modal>

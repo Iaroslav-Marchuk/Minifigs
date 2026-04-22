@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
+
 import logo from '../../assets/icons/icons-lego-64.png';
 
 import Container from '../Container/Container.jsx';
+import IconsSet from '../IconsSet/IconsSet.jsx';
 
 import css from './Footer.module.css';
-import IconsSet from '../IconsSet/IconsSet.jsx';
 
 function Footer() {
   return (

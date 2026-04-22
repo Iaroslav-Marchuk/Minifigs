@@ -2,12 +2,13 @@ import * as Yup from 'yup';
 import { PulseLoader } from 'react-spinners';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-import css from './ChangeNameForm.module.css';
 import { changeName } from '../../redux/auth/operations.js';
 import { selectUser } from '../../redux/auth/selectors.js';
-import { Check } from 'lucide-react';
+
+import css from './ChangeNameForm.module.css';
 
 function ChangeNameForm() {
   const dispatch = useDispatch();

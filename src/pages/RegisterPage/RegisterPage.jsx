@@ -1,16 +1,19 @@
-import Container from '../../components/Container/Container.jsx';
-
-import Section from '../../components/Section/Section.jsx';
-import css from './RegisterPage.module.css';
+import { MoveLeft } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import logo from '../../assets/icons/icons-lego-64.png';
 import googleIcon from '../../assets/icons/icons8-google-24.png';
-import { MoveLeft } from 'lucide-react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
+import Container from '../../components/Container/Container.jsx';
+import Section from '../../components/Section/Section.jsx';
 import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
-import { useDispatch } from 'react-redux';
+
 import { getGoogleOAuthUrl } from '../../redux/auth/operations.js';
+
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
+import css from './RegisterPage.module.css';
 
 function RegisterPage() {
   const navigate = useNavigate();

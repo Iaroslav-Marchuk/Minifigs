@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import css from './ResetPasswordForm.module.css';
-import { selectIsUserLoading } from '../../redux/auth/selectors.js';
-
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
-
 import { KeyRound } from 'lucide-react';
 import { PulseLoader } from 'react-spinners';
+
+import { selectIsUserLoading } from '../../redux/auth/selectors.js';
 import { resetUserPassword } from '../../redux/auth/operations.js';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import css from './ResetPasswordForm.module.css';
 
 function ResetPasswordForm() {
   const dispatch = useDispatch();

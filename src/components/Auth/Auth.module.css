@@ -50,6 +50,7 @@
 }
 
 .btn {
+  font-size: 14px;
   padding: 12px 24px;
   border-radius: 8px;
   background-color: var(--blue);
@@ -63,4 +64,14 @@
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
+}
+
+.rightSide {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .rightSide {
+    display: block;
+  }
 }

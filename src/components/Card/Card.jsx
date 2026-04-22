@@ -1,25 +1,28 @@
 import { Heart, ImageOff, Star } from 'lucide-react';
-
-import css from './Card.module.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
 import { selectCollection } from '../../redux/collection/selectors.js';
 import { selectWishList } from '../../redux/wishList/selectors.js';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
-import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
 import {
   addItemToUserCollection,
   deleteItemFromUserCollection,
 } from '../../redux/collection/operations.js';
-import toast from 'react-hot-toast';
 import {
   addItemToUserWishList,
   deleteItemFromUserWishList,
 } from '../../redux/wishList/operations.js';
+
+import css from './Card.module.css';
 
 function Card({ fig, isLoading, isPreview = false }) {
   const dispatch = useDispatch();

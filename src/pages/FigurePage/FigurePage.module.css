@@ -1,7 +1,7 @@
 .title {
   position: relative;
   padding: 24px 12px;
-  font-size: 48px;
+  font-size: 32px;
   display: block;
   background-color: var(--yellow-2);
 }
@@ -16,30 +16,11 @@
 }
 
 .wrapper {
-  margin-top: 64px;
-  display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 80px;
-}
-
-@media (max-width: 768px) {
-  .wrapper {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 1fr;
 }
 
 .leftSide {
   position: relative;
-}
-
-.leftSide::after {
-  content: '';
-  position: absolute;
-  right: -40px;
-  bottom: -1px;
-  width: 2px;
-  height: 100%;
-  background: var(--black);
 }
 
 .noResults {
@@ -142,6 +123,27 @@
 }
 
 @media screen and (min-width: 768px) {
+  .title {
+    font-size: 48px;
+  }
+
+  .wrapper {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 80px;
+  }
+
+  .leftSide::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    bottom: -1px;
+    width: 2px;
+    height: 100%;
+    background: var(--black);
+  }
+
   .setsList {
     grid-template-columns: repeat(4, 1fr);
   }

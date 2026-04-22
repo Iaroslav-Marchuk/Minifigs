@@ -1,24 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+
 import Card from '../../components/Card/Card.jsx';
 import Container from '../../components/Container/Container.jsx';
 import Section from '../../components/Section/Section.jsx';
+import Pagination from '../../components/Pagination/pagination.jsx';
+import SearchBox from '../../components/SearchBox/SearchBox.jsx';
+
 import {
   selectAllMinifigs,
   selectAllMinifigsIsLoading,
   selectTotalPages,
 } from '../../redux/minifigs/selectors.js';
-
-import css from './CatalogPage.module.css';
-import { useEffect } from 'react';
 import { getAllMinifigs } from '../../redux/minifigs/operations.js';
-import SearchBox from '../../components/SearchBox/SearchBox.jsx';
-import { useSearchParams } from 'react-router-dom';
-import Pagination from '../../components/Pagination/pagination.jsx';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 import { selectCollection } from '../../redux/collection/selectors.js';
 import { selectWishList } from '../../redux/wishList/selectors.js';
 import { getUserCollection } from '../../redux/collection/operations.js';
 import { getUserWishList } from '../../redux/wishList/operations.js';
+
+import css from './CatalogPage.module.css';
 
 function CatalogPage() {
   const dispatch = useDispatch();
@@ -34,11 +36,6 @@ function CatalogPage() {
 
   const [query, setQuery] = useSearchParams();
   const page = Number(query.get('page')) || 1;
-  // const perPage = Number(query.get('perPage')) || 10;
-  // const sortBy = query.get('sortBy') || 'createdAt';
-  // const sortOrder = query.get('sortOrder') || 'desc';
-
-  // const [query] = useSearchParams();
 
   const handlePageChange = newPage => {
     query.set('page', newPage);

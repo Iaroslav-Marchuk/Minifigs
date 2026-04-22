@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom';
-import Container from '../../components/Container/Container.jsx';
-import Section from '../../components/Section/Section.jsx';
-
-import css from './MainPage.module.css';
 import { Box, Heart, MoveRight, Star } from 'lucide-react';
-import Card from '../../components/Card/Card.jsx';
 
 import logo from '../../assets/icons/icons-lego-64.png';
+
+import Container from '../../components/Container/Container.jsx';
+import Section from '../../components/Section/Section.jsx';
+import Card from '../../components/Card/Card.jsx';
 import CardPreview from '../../components/CardPreview/CardPreview.jsx';
+
+import css from './MainPage.module.css';
 
 function MainPage() {
   const MOCK_MINIFIGS = [

@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import css from './RequestResetTokenForm.module.css';
-import { selectIsUserLoading } from '../../redux/auth/selectors.js';
-
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
-
 import { Mail } from 'lucide-react';
 import { PulseLoader } from 'react-spinners';
+
+import { selectIsUserLoading } from '../../redux/auth/selectors.js';
 import { requestResetToken } from '../../redux/auth/operations.js';
+
+import css from './RequestResetTokenForm.module.css';
 
 function RequestResetTokenForm() {
   const dispatch = useDispatch();

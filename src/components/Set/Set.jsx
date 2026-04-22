@@ -1,4 +1,5 @@
 import Skeleton from '@mui/material/Skeleton';
+
 import css from './Set.module.css';
 
 function Set({ set, isLoading }) {

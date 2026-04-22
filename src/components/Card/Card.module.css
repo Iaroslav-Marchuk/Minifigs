@@ -75,3 +75,9 @@
 .iconWrapper svg:hover {
   color: var(--yellow-2);
 }
+
+@media screen and (min-width: 768px) {
+  .card img {
+    aspect-ratio: 1 / 1;
+  }
+}

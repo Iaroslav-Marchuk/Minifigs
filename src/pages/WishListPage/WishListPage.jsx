@@ -1,20 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import Container from '../../components/Container/Container.jsx';
 import Section from '../../components/Section/Section.jsx';
+import Card from '../../components/Card/Card.jsx';
+import SearchBox from '../../components/SearchBox/SearchBox.jsx';
+import Pagination from '../../components/Pagination/pagination.jsx';
+
 import {
   selectWishList,
   selectWishListIsLoading,
   selectWishListTotalPages,
 } from '../../redux/wishList/selectors.js';
+import { getUserWishList } from '../../redux/wishList/operations.js';
 
 import css from './WishListPage.module.css';
-import { useEffect } from 'react';
-import { getUserWishList } from '../../redux/wishList/operations.js';
-import SearchBox from '../../components/SearchBox/SearchBox.jsx';
-
-import Pagination from '../../components/Pagination/pagination.jsx';
-import { useSearchParams } from 'react-router-dom';
-import Card from '../../components/Card/Card.jsx';
 
 function WishListPage() {
   const dispatch = useDispatch();

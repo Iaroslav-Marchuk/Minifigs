@@ -1,15 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
-import css from './LoginForm.module.css';
-import { selectIsUserLoading } from '../../redux/auth/selectors.js';
-
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
-import { loginUser } from '../../redux/auth/operations.js';
 import { Mail, KeyRound } from 'lucide-react';
 import { PulseLoader } from 'react-spinners';
 import { useNavigate } from 'react-router-dom';
+
+import { selectIsUserLoading } from '../../redux/auth/selectors.js';
+import { loginUser } from '../../redux/auth/operations.js';
+
 import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
+import css from './LoginForm.module.css';
 
 function LoginForm() {
   const dispatch = useDispatch();

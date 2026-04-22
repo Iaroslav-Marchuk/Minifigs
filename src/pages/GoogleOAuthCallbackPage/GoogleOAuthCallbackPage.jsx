@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginWithGoogle } from '../../redux/auth/operations.js';
+
 import GlobalLoader from '../../components/GlobalLoader/GlobalLoader.jsx';
+
+import { loginWithGoogle } from '../../redux/auth/operations.js';
 
 function GoogleOAuthCallbackPage() {
   const dispatch = useDispatch();

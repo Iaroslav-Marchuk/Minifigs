@@ -1,15 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
-
 import toast from 'react-hot-toast';
 import clsx from 'clsx';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import css from './MobileMenu.module.css';
-import { logoutUser } from '../../redux/auth/operations.js';
-import { useModal } from '../../context/ModalContext/UseModal.jsx';
-import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors.js';
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
 import Auth from '../Auth/Auth.jsx';
+
+import { logoutUser } from '../../redux/auth/operations.js';
+import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors.js';
+
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
+import css from './MobileMenu.module.css';
 
 function MobileMenu({ onClose }) {
   const { isModalOpen, openModal, closeModal } = useModal();

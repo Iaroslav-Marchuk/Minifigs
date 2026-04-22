@@ -1,19 +1,21 @@
 import { NavLink, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 import Container from '../../components/Container/Container.jsx';
 import Section from '../../components/Section/Section.jsx';
-import { useDispatch, useSelector } from 'react-redux';
+import Card from '../../components/Card/Card.jsx';
+import SearchBox from '../../components/SearchBox/SearchBox.jsx';
+import Pagination from '../../components/Pagination/pagination.jsx';
+
 import {
   selectCollection,
   selectCollectionIsLoading,
   selectCollectionTotalPages,
 } from '../../redux/collection/selectors.js';
-import { useEffect } from 'react';
 import { getUserCollection } from '../../redux/collection/operations.js';
 
 import css from './MyCollectionPage.module.css';
-import Card from '../../components/Card/Card.jsx';
-import SearchBox from '../../components/SearchBox/SearchBox.jsx';
-import Pagination from '../../components/Pagination/pagination.jsx';
 
 function MyCollectionPage() {
   const dispatch = useDispatch();

@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import css from './RegisterForm.module.css';
-import { selectIsUserLoading } from '../../redux/auth/selectors.js';
-
+import { useNavigate } from 'react-router-dom';
+import { UserRound, KeyRound, Mail } from 'lucide-react';
+import { PulseLoader } from 'react-spinners';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 
-import { UserRound, KeyRound, Mail } from 'lucide-react';
-import { PulseLoader } from 'react-spinners';
+import { selectIsUserLoading } from '../../redux/auth/selectors.js';
 import { registerUser } from '../../redux/auth/operations.js';
-import { useNavigate } from 'react-router-dom';
+
+import css from './RegisterForm.module.css';
 
 function RegisterForm() {
   const dispatch = useDispatch();

@@ -1,17 +1,18 @@
-import css from './SettingsPage.module.css';
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
+import { useState } from 'react';
+
 import Container from '../../components/Container/Container.jsx';
 import Section from '../../components/Section/Section.jsx';
-
-import { useState } from 'react';
 import ModalOverlay from '../../components/ModalOverlay/ModalOverlay.jsx';
 import ConfirmContainer from '../../components/ConfirmContainer/ConfirmContainer.jsx';
-import toast from 'react-hot-toast';
-
 import ChangePassForm from '../../components/ChangePassForm/ChangePassForm.jsx';
 import ChangeNameForm from '../../components/ChangeNameForm/ChangeNameForm.jsx';
-import { useDispatch } from 'react-redux';
+
 import { clearUserCollection } from '../../redux/collection/operations.js';
 import { clearUserWishList } from '../../redux/wishList/operations.js';
+
+import css from './SettingsPage.module.css';
 
 function SettingsPage() {
   const dispatch = useDispatch();

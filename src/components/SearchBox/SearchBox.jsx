@@ -1,11 +1,12 @@
 import { useSearchParams } from 'react-router-dom';
+import { CircleX, Search } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectAllThemes } from '../../redux/themes/selectors.js';
+import { getAllThemes } from '../../redux/themes/operations.js';
 
 import css from './SearchBox.module.css';
-import { CircleX, Search } from 'lucide-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAllThemes } from '../../redux/themes/selectors.js';
-import { useEffect, useState } from 'react';
-import { getAllThemes } from '../../redux/themes/operations.js';
 
 function SearchBox() {
   const dispatch = useDispatch();

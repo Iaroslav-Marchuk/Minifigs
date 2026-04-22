@@ -1,14 +1,15 @@
+import { useState } from 'react';
+import { EllipsisVertical, Menu } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+
 import Container from '../Container/Container.jsx';
+import Navigation from '../Navigation/Navigation.jsx';
+import ModalSideBar from '../ModalSideBar/ModalSideBar.jsx';
+import MobileMenu from '../MobileMenu/MobileMenu.jsx';
 
 import logo from '../../assets/icons/icons-lego-64.png';
 
 import css from './Header.module.css';
-import { NavLink } from 'react-router-dom';
-import Navigation from '../Navigation/Navigation.jsx';
-import ModalSideBar from '../ModalSideBar/ModalSideBar.jsx';
-import MobileMenu from '../MobileMenu/MobileMenu.jsx';
-import { useState } from 'react';
-import { EllipsisVertical, Menu } from 'lucide-react';
 
 function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);

@@ -1,15 +1,19 @@
-import Container from '../../components/Container/Container.jsx';
-import LoginForm from '../../components/LoginForm/LoginForm.jsx';
-import Section from '../../components/Section/Section.jsx';
-import css from './LoginPage.module.css';
+import { MoveLeft } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import logo from '../../assets/icons/icons-lego-64.png';
 import googleIcon from '../../assets/icons/icons8-google-24.png';
-import { MoveLeft } from 'lucide-react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useModal } from '../../context/ModalContext/UseModal.jsx';
-import { useDispatch } from 'react-redux';
+
+import Container from '../../components/Container/Container.jsx';
+import LoginForm from '../../components/LoginForm/LoginForm.jsx';
+import Section from '../../components/Section/Section.jsx';
+
 import { getGoogleOAuthUrl } from '../../redux/auth/operations.js';
+
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
+import css from './LoginPage.module.css';
 
 function LoginPage() {
   const navigate = useNavigate();

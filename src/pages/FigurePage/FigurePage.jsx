@@ -1,41 +1,40 @@
-import Container from '../../components/Container/Container.jsx';
-import Section from '../../components/Section/Section.jsx';
-
 import { Heart, ImageOff, Star } from 'lucide-react';
-
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
+import toast from 'react-hot-toast';
+
+import Container from '../../components/Container/Container.jsx';
+import Section from '../../components/Section/Section.jsx';
+import Set from '../../components/Set/Set.jsx';
+
 import {
   selectCurrentMinifig,
   selectCurrentMinifigIsLoading,
   selectSets,
   selectSetsIsLoading,
 } from '../../redux/minifigs/selectors.js';
-import { useEffect, useState } from 'react';
 import {
   getMinifigById,
   getSetsByFigNum,
 } from '../../redux/minifigs/operations.js';
-
-import Set from '../../components/Set/Set.jsx';
-
-import css from './FigurePage.module.css';
-
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
 import { selectCollection } from '../../redux/collection/selectors.js';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
-import { useModal } from '../../context/ModalContext/UseModal.jsx';
 import {
   addItemToUserCollection,
   deleteItemFromUserCollection,
 } from '../../redux/collection/operations.js';
-import toast from 'react-hot-toast';
 import { selectWishList } from '../../redux/wishList/selectors.js';
 import {
   addItemToUserWishList,
   deleteItemFromUserWishList,
 } from '../../redux/wishList/operations.js';
+
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
+import css from './FigurePage.module.css';
 
 function FigurePage() {
   const { id } = useParams();
@@ -163,14 +162,6 @@ function FigurePage() {
           </span>
 
           <ul className={css.setsList}>
-            {/* {sets?.length === 0 && <p className={css.aviso}>Sets not found!</p>}
-            {sets &&
-              sets.map(set => (
-                <li key={set._id}>
-                  <Set set={set} />
-                </li>
-              ))} */}
-
             {isSetsLoading ? (
               Array.from({ length: 3 }).map((_, i) => (
                 <li key={i}>

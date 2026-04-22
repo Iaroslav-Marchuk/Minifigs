@@ -1,18 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 
 import Layout from '../Layout/Layout.jsx';
 import GlobalLoader from '../GlobalLoader/GlobalLoader.jsx';
+import RestrictedRoute from '../RestrictedRoute.jsx';
+import PrivateRoute from '../PrivateRoute.jsx';
 
 import { selectIsRefreshing } from '../../redux/auth/selectors.js';
 import { refreshSession } from '../../redux/auth/operations.js';
-import RestrictedRoute from '../RestrictedRoute.jsx';
-import PrivateRoute from '../PrivateRoute.jsx';
-import { Toaster } from 'react-hot-toast';
-import SettingsPage from '../../pages/SettingsPage/SettingsPage.jsx';
 import { getUserCollection } from '../../redux/collection/operations.js';
 import { getUserWishList } from '../../redux/wishList/operations.js';
+
+import SettingsPage from '../../pages/SettingsPage/SettingsPage.jsx';
 import TermsOfServicePage from '../../pages/TermsOfServicePage/TermsOfServicePage.jsx';
 import PrivacyPolicyPage from '../../pages/PrivacyPolicyPage/PrivacyPolicyPage.jsx';
 
@@ -50,10 +51,6 @@ const GoogleOAuthCallbackPage = lazy(
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-
-  // useEffect(() => {
-  //   dispatch(refreshSession());
-  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(refreshSession()).then(result => {

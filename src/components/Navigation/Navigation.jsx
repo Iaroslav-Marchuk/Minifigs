@@ -1,21 +1,21 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-
 import clsx from 'clsx';
-
 import { Heart, LogOut, Wrench } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import head from '../../assets/icons/icons-head-24.png';
 
-import css from './Navigation.module.css';
-
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
 import Auth from '../Auth/Auth.jsx';
-import { useModal } from '../../context/ModalContext/UseModal.jsx';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors.js';
-import { useEffect, useRef, useState } from 'react';
 import { logoutUser } from '../../redux/auth/operations.js';
-import toast from 'react-hot-toast';
+
+import { useModal } from '../../context/ModalContext/UseModal.jsx';
+
+import css from './Navigation.module.css';
 
 function Navigation() {
   const { isModalOpen, openModal, closeModal } = useModal();
