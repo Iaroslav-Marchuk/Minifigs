@@ -6,8 +6,6 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 
-import css from './Pagination.module.css';
-
 function Pagination({ page, totalPages, onPageChange }) {
   const getPages = (page, totalPages) => {
     const pages = [];
