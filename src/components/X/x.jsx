@@ -6,7 +6,9 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 
-function Pagination({ page, totalPages, onPageChange }) {
+import css from './x.module.css';
+
+function x({ page, totalPages, onPageChange }) {
   const getPages = (page, totalPages) => {
     const pages = [];
 
@@ -129,4 +131,4 @@ function Pagination({ page, totalPages, onPageChange }) {
   );
 }
 
-export default Pagination;
+export default x;

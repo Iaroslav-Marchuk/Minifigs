@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import Card from '../../components/Card/Card.jsx';
 import Container from '../../components/Container/Container.jsx';
 import Section from '../../components/Section/Section.jsx';
-import Pagination from '../../components/Pagination/Pagination.jsx';
+
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 
 import {
