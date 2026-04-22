@@ -6,7 +6,7 @@ import Container from '../../components/Container/Container.jsx';
 import Section from '../../components/Section/Section.jsx';
 import Card from '../../components/Card/Card.jsx';
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
-import Pagination from '../../components/Pagination/pagination.jsx';
+import Pagination from '../../components/Pagination/Pagination.jsx';
 
 import {
   selectCollection,
