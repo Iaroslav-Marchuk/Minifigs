@@ -22,6 +22,7 @@ import { getUserWishList } from '../../redux/wishList/operations.js';
 
 import css from './CatalogPage.module.css';
 
+
 function CatalogPage() {
   const dispatch = useDispatch();
   const minifigs = useSelector(selectAllMinifigs);
