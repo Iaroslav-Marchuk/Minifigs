@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import { clearUser, setAccessToken } from '../redux/auth/slice.js';
 
-const BASE_URL = 'http://localhost:3000';
-// const BASE_URL = 'https://vidreira-register.onrender.com';
+// const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://minifigs-b.onrender.com';
 
 const axiosAPI = axios.create({
   baseURL: BASE_URL,
